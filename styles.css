@@ -76,6 +76,11 @@ h3 {
   margin-left: 0.5rem;
 }
 
+h4 {
+  color: rgb(94, 60, 36);
+  margin-bottom: 0;
+}
+
 #logo {
   font-size: 2rem;
   font-weight: bold;
