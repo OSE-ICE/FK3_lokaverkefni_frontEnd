@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hafðu samband</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-gpx/gpx.js"></script>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0MB52GYPZH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0MB52GYPZH');
+</script>
+<body>
+    <header class="hero dark-overlay">
+      <div id="logo"><a href="index.html"><img src="/img/rafhjol_logo.png" alt="Rafhjól á íslandi Logo"></a></div>
+        <nav id="menu">
+          <ul>
+            <li><a href="routes.html" title="Leiðir"><i class="fas fa-map-marker-alt fa-lg"></i></a></li>
+            <li><a href="events.html" title="Á döfinni"><i class="fas fa-calendar-check fa-lg"></i></a></li>
+            <li><a href="misc.html" title="Hitt og þetta..."><i class="fas fa-wrench fa-lg"></i></a></li>
+            <li><a href="about.html" title="Um okkur"><i class="fas fa-info-circle fa-lg"></i></a></li>
+            <li><a href="contact.html" title="Hafðu samband"><i class="fas fa-envelope fa-lg"></i></a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61560758076484" title="Facebook" target="_blank"><i class="fab fa-facebook fa-lg"></i></a></li>
+            <li><a href="https://youtube.com/@rafhjolaislandi-z4x?si=iC2BmoKiCcbyDd8P" title="YouTube" target="_blank"><i class="fab fa-youtube fa-lg"></i></a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+    <div><h1 class="text">Hafa samband</h1></div>
+      <div class="contact">
+    <p class="text">Ef þú ert með ábendingar um leið, viðburð eða eitthvað annað spennandi sem á heima á síðunni.
+      Endilega sendu okkur póst.
+    </p>
+    <a class="copy" href="mailto:info@emtbiceland.is"><i class="fas fa-envelope"></i> senda póst</a><br>
+    <p class="text">Eða......</p>
+    <a href="#" class="copy" onclick="copyToClipboard(event, 'info@emtbiceland.is')"><i class="fas fa-copy"></i> smelltu til að afrita netfang</a>
+    <p class="text">Næsta skref er að opna póstforritið þitt, t.d. Gmail, Outlook eða Thunderbird. Þar smíðar þú ný tölvupóst skilaboð og límir netfangið sem þú afritaðir í 'Til:' reitinn. Þá getur þú sent okkur tölvupóstinn þinn.</p>
+    </div>
+  </main>
+    <footer>
+      <a href="#" id="back-to-top" title="Back to top">&uarr;</a> <!-- Add this line -->
+  </footer>
+  <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: rgb(165, 171, 123, 0.3);
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(
+    to bottom,
+    rgba(65, 73, 25, 1) 0%,
+    rgba(65, 73, 25, 0) 100%
+  );
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+header a {
+  color: white;
+}
+
+.hero {
+  background-image: url("./img/emtbiceland_emtbroutes.JPG");
+  background-size: cover; /* This will make sure the image covers the entire header */
+  background-position: center; /* This will center the image in the header */
+  height: 40vh; /* This will make the header the same height as the viewport */
+  position: relative; /* This will make sure the text is positioned relative to the header */
+  border-radius: 10px;
+}
+
+.dark-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* This will create a semi-transparent black overlay */
+  z-index: 1; /* This will make sure the overlay is below the logo and menu */
+  border-radius: 10px;
+}
+
+#logo,
+#menu {
+  z-index: 2; /* This will make sure the logo and menu are above the overlay */
+}
+
+a {
+  color: rgb(165, 171, 123);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+h1 {
+  color: rgb(94, 60, 36);
+  font-size: 1.8rem;
+}
+
+h2 {
+  color: rgb(94, 60, 36);
+  font-size: 1.5rem;
+}
+
+h3 {
+  color: rgb(94, 60, 36);
+  margin-bottom: 0;
+  margin-left: 0.5rem;
+}
+
+#logo {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#logo img {
+  width: 15vw; /* Adjust this value to the size you want */
+  height: auto;
+}
+
+#menu {
+  display: flex;
+}
+
+#menu ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#menu ul li {
+  margin-left: 1.5rem;
+}
+
+#menu ul li:last-child {
+  margin-right: 2rem; /* Remove space from the right of the last list item */
+}
+
+.map-container {
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  height: 40vh;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .map-container {
+    height: 30vh; /* Adjust this value to the height you want */
+  }
+
+  .hero {
+    height: 30vh; /* Adjust this value to the height you want */
+  }
+}
+
+.routes-container {
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  height: 20rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+.routes {
+  max-width: 700px;
+  margin-top: 1rem;
+  margin-left: 0;
+}
+
+.events {
+  max-width: 700px;
+  margin-top: 1rem;
+  margin-left: 0;
+}
+
+.text {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  color: rgb(94, 60, 36);
+}
+
+.contact {
+  border-radius: 10px;
+  max-width: 700px;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+}
+
+#back-to-top {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap other elements */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: rgb(65, 73, 25); /* Dark background */
+  color: rgb(165, 171, 123); /* White text */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#back-to-top:hover {
+  background-color: #555; /* Add a dark grey background on hover */
+}
+
+.about {
+  border-radius: 10px;
+  max-width: 700px;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+  color: rgb(94, 60, 36);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+#ad-banner {
+  border-radius: 10px;
+  padding: 10px;
+  width: 85%;
+  max-width: fit-content;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+  background-color: rgb(24, 119, 242);
+  color: white;
+}
+
+#ad-banner a {
+  color: white;
+}
+
+#ad-banner i.fab.fa-facebook {
+  font-size: 2em; /* Adjust as needed */
+}
+
+.copy {
+  margin-left: 1rem;
+}
+
+.misc {
+  border-radius: 10px;
+  max-width: 700px;
+  margin-top: 1rem;
+  color: rgb(94, 60, 36);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.img-misc {
+  width: 23rem;
+  height: auto;
+  border-radius: 10px;
+}
+
+.misc-link {
+  color: rgb(94, 60, 36);
+  margin-top: 1rem;
+}
