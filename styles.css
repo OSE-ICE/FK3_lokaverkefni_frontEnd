@@ -236,3 +236,15 @@ h4 {
   color: rgb(94, 60, 36);
   margin-top: 1rem;
 }
+
+#routes-section {
+  margin-left: 1rem;
+}
+
+#events-section {
+  margin-left: 1rem;
+}
+
+#users-section {
+  margin-left: 1rem;
+}

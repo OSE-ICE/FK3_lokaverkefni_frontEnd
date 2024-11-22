@@ -213,6 +213,10 @@ async function deleteRoute(routeId) {
     }
 }
 
+async function loadRoutes() {
+    // Implement API call to load all routes and display them in the routes list
+}
+
 async function addEvent(name, date, description) {
     // Implement API call to add a new event
 }
@@ -223,6 +227,10 @@ async function updateEvent(id, name, date, description) {
 
 async function deleteEvent(id) {
     // Implement API call to delete an event
+}
+
+async function loadEvents() {
+    // Implement API call to load all events and display them in the events list
 }
 
 
