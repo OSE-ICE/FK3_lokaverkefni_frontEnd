@@ -36,22 +36,26 @@
                 <textarea id="route-description" required></textarea><br><br>
                 <label for="route-videolink">Myndband:</label>
                 <input type="text" id="route-videolink" required><br><br>
-                <button type="submit">Vista / Uppfæra leið</button>
-                <button type="button" id="delete-route-button">Eyða leið</button>
+                <button type="submit">Vista / Uppfæra</button>
+                <button type="button" id="delete-route-button">Eyða</button>
             </form>
             <ul id="routes-list"></ul>
         </section>
         <section id="events-section">
             <h2>Viðburðir</h2>
             <form id="event-form">
-                <input type="hidden" id="event-id">
-                <label for="event-name">Name:</label>
-                <input type="text" id="event-name" required>
-                <label for="event-date">Date:</label>
-                <input type="date" id="event-date" required>
-                <label for="event-description">Description:</label>
-                <textarea id="event-description" required></textarea>
-                <button type="submit">Save Event</button>
+                <label for="event-id">Event Id:</label>
+                <input type="text" id="event-id"><br><br>
+                <label for="event-name">Viðburður:</label>
+                <input type="text" id="event-name" required><br><br>
+                <label for="event-date">Dagsetning:</label>
+                <input type="text" id="event-date" required placeholder="dd-MM-yyyy"><br><br>
+                <label for="event-text">Lýsing:</label>
+                <textarea id="event-text" required></textarea><br><br>
+                <label for="event-link">Tengill:</label>
+                <input type="text" id="event-link" required><br><br>
+                <button type="submit">Vista / Uppfæra</button>
+                <button type="button" id="delete-event-button">Eyða</button>
             </form>
             <ul id="events-list"></ul>
         </section>

@@ -35,8 +35,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Function to parse date in dd.MM.yyyy format
     function parseDate(dateStr) {
-        const [day, month, year] = dateStr.split('.').map(Number);
+        const [day, month, year] = dateStr.split('-').map(Number);
         return new Date(year, month - 1, day); // Month is 0-based in JavaScript Date
+    }
+    
+    function formatDate(date) {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-based
+        const year = date.getFullYear();
+        return `${day}-${month}-${year}`;
     }
 
     // Filter events to include only those with a date greater than or equal to today
@@ -74,7 +81,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         eventElement.appendChild(eventName);
 
         let eventDate = document.createElement('p');
-        eventDate.textContent = `Dagsetning: ${event.date}`;
+        eventDate.textContent = `Dagsetning: ${formatDate(new Date(event.date))}`; // Format the date
         eventElement.appendChild(eventDate);
 
         let eventDescription = document.createElement('p');
@@ -84,6 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Use the link defined in the event data 
             let eventLink = document.createElement('a');
             eventLink.href = event.link;
+            eventLink.target = '_blank'; // Open the link in a new tab
             eventLink.textContent = 'Skoða betur';
             eventElement.appendChild(eventLink);
         
