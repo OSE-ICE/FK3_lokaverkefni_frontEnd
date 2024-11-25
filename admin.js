@@ -258,7 +258,26 @@ async function deleteRoute(routeId) {
 }
 
 async function loadRoutes() {
-    // Implement API call to load all routes and display them in the routes list
+    try {
+        const response = await fetch('https://localhost:7295/api/routes');
+
+        if (!response.ok) {
+            throw new Error('Failed to load routes');
+        }
+
+        const routes = await response.json();
+        const routesList = document.getElementById('routes-list');
+        routesList.innerHTML = ''; // Clear the existing list
+
+        routes.forEach(route => {
+            const li = document.createElement('li');
+            li.textContent = `ID: ${route.routeId} - ${route.name}`;
+            li.dataset.id = route.id;
+            routesList.appendChild(li);
+        });
+    } catch (error) {
+        console.error('Error loading routes:', error);
+    }
 }
 
 async function addEvent(name, date, text, link) {
@@ -332,7 +351,26 @@ async function deleteEvent(eventId) {
 }
 
 async function loadEvents() {
-    // Implement API call to load all events and display them in the events list
+    try {
+        const response = await fetch('https://localhost:7295/api/events');
+
+        if (!response.ok) {
+            throw new Error('Failed to load events');
+        }
+
+        const events = await response.json();
+        const eventsList = document.getElementById('events-list');
+        eventsList.innerHTML = ''; // Clear the existing list
+
+        events.forEach(event => {
+            const li = document.createElement('li');
+            li.textContent = `ID: ${event.eventId} - ${event.name}`;
+            li.dataset.id = event.id;
+            eventsList.appendChild(li);
+        });
+    } catch (error) {
+        console.error('Error loading events:', error);
+    }
 }
 
 
