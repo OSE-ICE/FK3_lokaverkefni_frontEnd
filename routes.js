@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', async () => {
          // Optionally, create a link that scrolls to this route when clicked
          let scrollToRouteLink = document.createElement('a');
          scrollToRouteLink.href = `#route-${route.routeId}`;
-            scrollToRouteLink.textContent = 'Go to link';
          routeElement.appendChild(scrollToRouteLink);
 
         // Display route details
