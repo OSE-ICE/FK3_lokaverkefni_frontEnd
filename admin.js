@@ -126,32 +126,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // Users
     const userForm = document.getElementById('user-form');
     const usersList = document.getElementById('users-list');
+    const deleteUserButton = document.getElementById('delete-user-button');
 
     userForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const userId = document.getElementById('user-id').value;
-        const userName = document.getElementById('user-name').value;
+        const userFirstName = document.getElementById('user-firstname').value;
+        const userLastName = document.getElementById('user-lastname').value;
         const userEmail = document.getElementById('user-email').value;
+        const userSSID = document.getElementById('SSID').value;
 
         if (userId) {
             // Update user
-            await updateUser(userId, userName, userEmail);
+            await updateUser(userId, userFirstName, userLastName, userEmail, userSSID);
         } else {
             // Add new user
-            await addUser(userName, userEmail);
+            await addUser(userFirstName, userLastName, userEmail, userSSID);
         }
 
         loadUsers();
         userForm.reset();
     });
 
+    deleteUserButton.addEventListener('click', async () => {
+        const userId = document.getElementById('user-id').value;
+        if (userId) {
+            await deleteUser(userId);
+            loadUsers();
+            userForm.reset();
+        } else {
+            alert('No user selected to delete');
+        }
+    });
+
     usersList.addEventListener('click', async (e) => {
         if (e.target.classList.contains('edit')) {
             const userId = e.target.dataset.id;
             const user = await getUser(userId);
-            document.getElementById('user-id').value = user.id;
-            document.getElementById('user-name').value = user.name;
+            document.getElementById('user-id').value = user.userId;
+            document.getElementById('user-firstname').value = user.firstName;
+            document.getElementById('user-lastname').value = user.lastName;
             document.getElementById('user-email').value = user.email;
+            document.getElementById('SSID').value = user.ssid;
         } else if (e.target.classList.contains('delete')) {
             const userId = e.target.dataset.id;
             await deleteUser(userId);
@@ -320,22 +336,109 @@ async function loadEvents() {
 }
 
 
-async function addUser(name, email) {
-    // Implement API call to add a new user
-}
-
-async function updateUser(id, name, email) {
-    // Implement API call to update an existing user
-}
-
-async function deleteUser(id) {
-    // Implement API call to delete a user
-}
-
-async function getUser(id) {
-    // Implement API call to get a user by ID
-}
-
 async function loadUsers() {
-    // Implement API call to load all users and display them in the users list
+    try {
+        const response = await fetch('https://localhost:7295/api/users');
+
+        if (!response.ok) {
+            throw new Error('Failed to load users');
+        }
+
+        const users = await response.json();
+        const usersList = document.getElementById('users-list');
+        usersList.innerHTML = ''; // Clear the existing list
+
+        users.forEach(user => {
+            const li = document.createElement('li');
+            li.textContent = `ID: ${user.userId} - ${user.firstName} ${user.lastName}`;
+            li.dataset.id = user.id;
+            usersList.appendChild(li);
+        });
+    } catch (error) {
+        console.error('Error loading users:', error);
+    }
+}
+
+async function addUser(firstName, lastName, email, ssid) {
+    try {
+        const response = await fetch('https://localhost:7295/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                ssid: ssid
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to add user');
+        }
+
+        const newUser = await response.json();
+        console.log('User added:', newUser);
+    } catch (error) {
+        console.error('Error adding user:', error);
+    }
+}
+
+async function updateUser(userId, firstName, lastName, email, ssid) {
+    try {
+        const response = await fetch(`https://localhost:7295/api/users/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: userId,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                ssid: ssid
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update user');
+        }
+
+        const updatedUser = await response.json();
+        console.log('User updated:', updatedUser);
+    } catch (error) {
+        console.error('Error updating user:', error);
+    }
+}
+
+async function deleteUser(userId) {
+    try {
+        const response = await fetch(`https://localhost:7295/api/users/${userId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete user');
+        }
+
+        console.log('User deleted');
+    } catch (error) {
+        console.error('Error deleting user:', error);
+    }
+}
+
+async function getUser(userId) {
+    try {
+        const response = await fetch(`https://localhost:7295/api/users/${userId}`);
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch user');
+        }
+
+        const user = await response.json();
+        return user;
+    } catch (error) {
+        console.error('Error fetching user:', error);
+    }
 }
