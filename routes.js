@@ -71,7 +71,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
        // Use the link defined in the route data
         let routeLink = document.createElement('a');
-        routeLink.href = route.link.startsWith('http://') || route.link.startsWith('https://') ? route.link : `http://${route.link}`;
         routeLink.href = route.link;
         routeLink.target = '_blank';
         routeLink.textContent = 'Skoða leið';
@@ -82,7 +81,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Use the link defined in the route data
         if (route.videoLink) {
             let routeVideoLink = document.createElement('a');
-            routeVideoLink.href = route.videoLink.startsWith('http://') || route.videoLink.startsWith('https://') ? route.videoLink : `http://${route.videoLink}`;
             routeVideoLink.href = route.videoLink;
             routeVideoLink.target = '_blank';
             routeVideoLink.textContent = 'Horfa á myndband';
