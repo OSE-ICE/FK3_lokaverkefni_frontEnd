@@ -29,14 +29,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     const routes = JSON.parse(storedRoutes);
     console.log('Routes from localStorage:', routes);
 
-    const routeId = window.location.hash; // Gets the URL fragment including the '#'
-    if (routeId) {
-        const routeElement = document.querySelector(routeId);
-        if (routeElement) {
-            routeElement.scrollIntoView(); // Scrolls the page to the route element
+     // Function to scroll to the route element if the URL contains a hash
+     function scrollToRoute() {
+        const routeId = window.location.hash; // Gets the URL fragment including the '#'
+        if (routeId) {
+            const routeElement = document.querySelector(routeId);
+            if (routeElement) {
+                routeElement.scrollIntoView(); // Scrolls the page to the route element
+            }
         }
     }
 
+    
     routes.reverse().forEach(route => {
         let routeElement = document.createElement('div');
         routeElement.id = `route-${route.routeId}`; // Set the ID for the route element
@@ -89,4 +93,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         routesContainer.appendChild(routeElement);
     });
+
+    // Call the function to scroll to the route element on page load
+    scrollToRoute();
+
+    // Listen for hash changes and scroll to the route element
+    window.addEventListener('hashchange', scrollToRoute);
 });
