@@ -1,9 +1,9 @@
 async function fetchEvents() {
     try {
-        console.log('Fetching events...');
+        
         const response = await fetch('https://localhost:7295/api/events'); // Update the URL to your events API endpoint
         const events = await response.json();
-        console.log('Events fetched:', events);
+        
         localStorage.setItem('events', JSON.stringify(events));
     } catch (error) {
         console.error('Failed to fetch events:', error);
@@ -27,18 +27,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const events = JSON.parse(storedEvents);
-    console.log('Events from localStorage:', events);
+    
 
-     // Get today's date
+    // Get today's date
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Set to midnight to compare dates only
-
-    // Function to parse date in dd.MM.yyyy format
-    function parseDate(dateStr) {
-        const [day, month, year] = dateStr.split('-').map(Number);
-        return new Date(year, month - 1, day); // Month is 0-based in JavaScript Date
-    }
     
+
+    // Function to parse ISO 8601 date string
+    function parseDate(dateStr) {
+        
+        const parsedDate = new Date(dateStr);
+        
+        return parsedDate;
+    }
+
+    // Function to format date in dd-MM-yyyy format
     function formatDate(date) {
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-based
@@ -49,12 +53,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Filter events to include only those with a date greater than or equal to today
     const upcomingEvents = events.filter(event => {
         const eventDate = parseDate(event.date);
+        
         eventDate.setHours(0, 0, 0, 0); // Set to midnight to compare dates only
         return eventDate >= today;
     });
 
     // Sort events by date in ascending order
     upcomingEvents.sort((a, b) => parseDate(a.date) - parseDate(b.date));
+
     
 
     const eventId = window.location.hash; // Gets the URL fragment including the '#'
@@ -65,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    events.reverse().forEach(event => {
+    upcomingEvents.forEach(event => {
         let eventElement = document.createElement('div');
         eventElement.id = `event-${event.eventId}`; // Set the ID for the event element
         eventElement.style.padding = '10px';
@@ -81,22 +87,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         eventElement.appendChild(eventName);
 
         let eventDate = document.createElement('p');
-        eventDate.textContent = `Dagsetning: ${formatDate(new Date(event.date))}`; // Format the date
+        eventDate.textContent = `Dagsetning: ${formatDate(parseDate(event.date))}`; // Format the date
         eventElement.appendChild(eventDate);
 
         let eventDescription = document.createElement('p');
         eventDescription.textContent = event.text;
         eventElement.appendChild(eventDescription);
 
-        // Use the link defined in the event data 
-            let eventLink = document.createElement('a');
-            eventLink.href = event.link;
-            eventLink.target = '_blank'; // Open the link in a new tab
-            eventLink.textContent = 'Skoða betur';
-            eventElement.appendChild(eventLink);
-        
-
-     
+        // Use the link defined in the event data
+        let eventLink = document.createElement('a');
+        eventLink.href = event.link;
+        eventLink.target = '_blank'; // Open the link in a new tab
+        eventLink.textContent = 'Skoða betur';
+        eventElement.appendChild(eventLink);
 
         eventsContainer.appendChild(eventElement);
     });
