@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const routeLink = document.getElementById('route-link').value;
         const routeRegion = document.getElementById('route-region').value;
         const routeDescription = document.getElementById('route-description').value;
-        const routeVideoLink = document.getElementById('route-videolink').value;
+        const routeVideoLink = document.getElementById('route-videolink').value || null;
 
         if (routeId) {
             await updateRoute(routeId, userId, routeName,routeDistance,routeLink,routeRegion, routeDescription, routeVideoLink);
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('route-link').value = route.link;
             document.getElementById('route-region').value = route.region;
             document.getElementById('route-description').value = route.description;
-            document.getElementById('route-videolink').value = route.videolink;
+            document.getElementById('route-videolink').value = route.videolink || '';
         } else if (e.target.classList.contains('delete')) {
             const routeId = e.target.dataset.id;
             await deleteRoute(routeId);

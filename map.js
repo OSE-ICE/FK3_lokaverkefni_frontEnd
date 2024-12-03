@@ -45,4 +45,9 @@ marker5.on('click', function() {
     navigateToRoute('30');
 });
 
+var marker6 = L.marker([65.6816, -18.4271]).addTo(map);
+marker6.bindTooltip('Baugasel í Barkardal', {permanent: false, direction: 'top'});
+marker6.on('click', function() {
+    navigateToRoute('33');
+});
 
