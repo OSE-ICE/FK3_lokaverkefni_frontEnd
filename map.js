@@ -51,3 +51,9 @@ marker6.on('click', function() {
     navigateToRoute('33');
 });
 
+var marker7 = L.marker([65.1871, -14.0161]).addTo(map);
+marker7.bindTooltip('Mjóafjarðarbotn - Asknes - Mjóafjarðarbotn', {permanent: false, direction: 'top'});
+marker7.on('click', function() {
+    navigateToRoute('34');
+});
+
