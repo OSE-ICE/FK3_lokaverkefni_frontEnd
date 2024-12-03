@@ -1,12 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+
     // Routes
-    
     const routeForm = document.getElementById('route-form');
     const routesList = document.getElementById('routes-list');
     const deleteRouteButton = document.getElementById('delete-route-button');
-
-   
-    
 
     routeForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -20,10 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const routeVideoLink = document.getElementById('route-videolink').value;
 
         if (routeId) {
-            // Update route
             await updateRoute(routeId, userId, routeName,routeDistance,routeLink,routeRegion, routeDescription, routeVideoLink);
         } else {
-            // Add new route
             await addRoute(userId, routeName,routeDistance,routeLink,routeRegion, routeDescription, routeVideoLink);
         }
 
@@ -71,15 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const eventId = document.getElementById('event-id').value;
         const eventName = document.getElementById('event-name').value;
         const eventDateStr = document.getElementById('event-date').value;
-        const eventDate = parseDate(eventDateStr); // Parse the data string
+        const eventDate = parseDate(eventDateStr); 
         const eventText = document.getElementById('event-text').value;
         const eventLink = document.getElementById('event-link').value;
 
         if (eventId) {
-            // Update event
             await updateEvent(eventId, eventName, eventDate, eventText, eventLink);
         } else {
-            // Add new event
             await addEvent(eventName, eventDate, eventText, eventLink);
         }
 
@@ -100,12 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function parseDate(dateStr) {
         const [day, month, year] = dateStr.split('-').map(Number);
-        return new Date(year, month - 1, day); // Month is 0-based in JavaScript Date
+        return new Date(year, month - 1, day);
     }
     
     function formatDate(date) {
         const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-based
+        const month = String(date.getMonth() + 1).padStart(2, '0');
         const year = date.getFullYear();
         return `${day}-${month}-${year}`;
     }
@@ -116,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const event = await getEvent(eventId);
             document.getElementById('event-id').value = event.id;
             document.getElementById('event-name').value = event.name;
-            document.getElementById('event-date').value = formatDate(new Date(event.date)); // Format the date
+            document.getElementById('event-date').value = formatDate(new Date(event.date));
             document.getElementById('event-text').value = event.text;
             document.getElementById('event-link').value = event.link;
         } else if (e.target.classList.contains('delete')) {
@@ -140,10 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const userSSID = document.getElementById('SSID').value;
 
         if (userId) {
-            // Update user
             await updateUser(userId, userFirstName, userLastName, userEmail, userSSID);
         } else {
-            // Add new user
             await addUser(userFirstName, userLastName, userEmail, userSSID);
         }
 
@@ -178,13 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Load initial data
+
     loadRoutes();
     loadEvents();
     loadUsers();
 });
 
-// Functions to interact with the API
+
 async function addRoute(userId, name, distance,link,region, description, videolink) {
     try {
         const response = await fetch('https://localhost:7295/api/routes', {
@@ -222,8 +213,8 @@ async function updateRoute(routeId, userId, name,distance,link,region, descripti
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                routeId: routeId, // Ensure this matches the backend's expected field name
-                userId: userId, // Ensure this matches the backend's expected field name
+                routeId: routeId, 
+                userId: userId, 
                 name: name,
                 distance: distance,
                 link: link,
@@ -270,7 +261,7 @@ async function loadRoutes() {
 
         const routes = await response.json();
         const routesList = document.getElementById('routes-list');
-        routesList.innerHTML = ''; // Clear the existing list
+        routesList.innerHTML = ''; 
 
         routes.forEach(route => {
             const li = document.createElement('li');
@@ -292,7 +283,7 @@ async function addEvent(name, date, text, link) {
             },
             body: JSON.stringify({
                 name: name,
-                date: date.toISOString(), // Convert date to ISO string
+                date: date.toISOString(),
                 text: text,
                 link: link
             })
@@ -317,9 +308,9 @@ async function updateEvent(eventId, name, date, text, link) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                eventId: eventId, // Ensure this matches the backend's expected field name
+                eventId: eventId, 
                 name: name,
-                date: date.toISOString(), // Convert date to ISO string
+                date: date.toISOString(), 
                 text: text,
                 link: link
             })
@@ -363,7 +354,7 @@ async function loadEvents() {
 
         const events = await response.json();
         const eventsList = document.getElementById('events-list');
-        eventsList.innerHTML = ''; // Clear the existing list
+        eventsList.innerHTML = ''; 
 
         events.forEach(event => {
             const li = document.createElement('li');
@@ -387,7 +378,7 @@ async function loadUsers() {
 
         const users = await response.json();
         const usersList = document.getElementById('users-list');
-        usersList.innerHTML = ''; // Clear the existing list
+        usersList.innerHTML = ''; 
 
         users.forEach(user => {
             const li = document.createElement('li');
