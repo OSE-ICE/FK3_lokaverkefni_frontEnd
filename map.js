@@ -39,4 +39,10 @@ marker4.on('click', function() {
     navigateToRoute('29');
 });
 
+var marker5 = L.marker([64.7020, -20.8688]).addTo(map);
+marker5.bindTooltip('Húsafell', {permanent: false, direction: 'top'});
+marker5.on('click', function() {
+    navigateToRoute('30');
+});
+
 

@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Routes
+    
     const routeForm = document.getElementById('route-form');
     const routesList = document.getElementById('routes-list');
     const deleteRouteButton = document.getElementById('delete-route-button');
+
+   
     
 
     routeForm.addEventListener('submit', async (e) => {
