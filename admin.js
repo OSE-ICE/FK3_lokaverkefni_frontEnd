@@ -71,9 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const eventLink = document.getElementById('event-link').value;
 
         if (eventId) {
-            await updateEvent(eventId, eventName, eventDate, eventText, eventLink);
+            await updateEvent(eventId, eventName, eventDate.toISOString().split('T')[0], eventText, eventLink);
         } else {
-            await addEvent(eventName, eventDate, eventText, eventLink);
+            await addEvent(eventName, eventDate.toISOString().split('T')[0], eventText, eventLink);
         }
 
         loadEvents();
@@ -283,7 +283,7 @@ async function addEvent(name, date, text, link) {
             },
             body: JSON.stringify({
                 name: name,
-                date: date.toISOString(),
+                date: date,
                 text: text,
                 link: link
             })
@@ -310,7 +310,7 @@ async function updateEvent(eventId, name, date, text, link) {
             body: JSON.stringify({
                 eventId: eventId, 
                 name: name,
-                date: date.toISOString(), 
+                date: date, 
                 text: text,
                 link: link
             })
